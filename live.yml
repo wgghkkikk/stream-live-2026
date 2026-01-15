@@ -1,1 +1,9 @@
-
+name: YouTube Live
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          pip install yt-dlp
+          ffmpeg -re -i "$(yt-dlp -f b -g 'https://www.youtube.com/watch?v=n61ULEU7FZ0')" -c:v libx264 -preset superfast -b:v 2000k -f flv "rtmp://a.rtmp.youtube.com/live2/Q12g-s6wc-0y03-0ua5-6e6p"
